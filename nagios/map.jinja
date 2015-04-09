@@ -53,6 +53,26 @@
         'status_file': '/var/cache/nagios3/status.dat',
         'temp_file': '/var/cache/nagios3/nagios.tmp',
     },
+    'FreeBSD': {
+        'check_result_path': '/var/spool/nagios/checkresults',
+        'conf': '/usr/local/etc/nagios/nagios.cfg',
+        'cgi_conf': '/usr/local/etc/nagios/cgi.cfg',
+        'command_file': '/var/spool/nagios/rw/nagios.cmd',
+        'debug_file': '/var/spool/nagios/nagios.debug',
+        'lock_file': '/var/spool/nagios/nagios.lock',
+        'log': '/var/log/nagios3/nagios.log',
+        'log_archive_path': '/var/spool/nagios/archives',
+        'object_cache': '/var/spool/nagios/objects.cache',
+        'p1_file': '',
+        'precached_object_file': '/var/spool/nagios/objects.precache',
+        'plugins': 'nagios-plugins',
+        'resource_file': '/usr/local/etc/nagios/resource.cfg',
+        'server': 'nagios4',
+        'service': 'nagios',
+        'state_retention_file': '/var/spool/nagios/retention.dat',
+        'status_file': '/var/spool/nagios/status.dat',
+        'temp_file': '/var/spool/nagios/nagios.tmp',
+    },
 }, merge=salt['pillar.get']('nagios:lookup:nagios')) %}
 
 {% set nrpe = salt['grains.filter_by']({
@@ -66,6 +86,11 @@
         'server': 'nagios-nrpe-server',
         'service': 'nagios-nrpe-server',
     },
+    'FreeBSD': {
+        'plugin': 'nagios-plugins',
+        'server': 'nrpe',
+        'service': 'nrpe2',
+    },
 }, merge=salt['pillar.get']('nagios:lookup:nrpe')) %}
 
 {% set nsca = salt['grains.filter_by']({
@@ -73,6 +98,9 @@
         'client': 'nagios-nsca',
     },
     'Debian': {
+        'client': 'nsca-client',
+    },
+    'FreeBSD': {
         'client': 'nsca-client',
     },
 }, merge=salt['pillar.get']('nagios:lookup:nsca')) %}
