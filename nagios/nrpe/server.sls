@@ -10,7 +10,7 @@ nrpe-server-service:
     - enable: true
 
 {% if grains['os_family'] == 'FreeBSD' %}
-/etc/nagios/nrpe.cfg:
+/usr/local/etc/nrpe.cfg:
    file.managed:
     - source: salt://nagios/nrpe/files/nrpe.cfg.jinja
     - template: jinja
