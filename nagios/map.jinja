@@ -11,6 +11,12 @@
         'url_html_path': '/nagios3',
         'nagios_check_command': '/usr/lib/nagios/plugins/check_nagios /var/cache/nagios3/status.dat 5 \'/usr/sbin/nagios3\'',
     },
+    'FreeBSD': {
+        'config_file': '/usr/local/etc/nagios/nagios.cfg',
+        'physical_html_path': '/usr/local/www',
+        'url_html_path': '/nagios',
+        'nagios_check_command': '/usr/local/libexec/nagios/check_nagios /var/spool/nagios/status.dat 5 \'/usr/local/bin/nagios\'',
+    },
 }, merge=salt['pillar.get']('nagios:lookup:cgi')) %}
 
 {% set nagios = salt['grains.filter_by']({
